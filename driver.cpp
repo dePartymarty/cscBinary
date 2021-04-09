@@ -20,6 +20,7 @@ struct node *newNode(int value)
     node->rightChild = NULL;
     return node;
         }
+    
 //vistInOrder takes the root of the binary tree and prints the elements in order.
 void visitInOrder(struct node *root)
 {
@@ -31,6 +32,28 @@ void visitInOrder(struct node *root)
 
     }
 }
+
+void visitPreOrder(struct node *temp)
+{
+    if (temp != NULL)
+    {
+        cout << " " << temp->payload;
+        visitPreOrder(temp->leftChild);
+        visitPreOrder(temp->rightChild);
+    }
+}
+
+void visitPostOrder(struct node *temp)
+{
+    if (temp != NULL)
+    {
+        visitPreOrder(temp->leftChild);
+        visitPreOrder(temp->rightChild);
+        cout << " " << temp->payload;
+    }
+}
+
+
 
 //insertNode is made to insert a node into the top and is how it gets the values, if the node is null it calls newNode
  
@@ -64,5 +87,12 @@ int main(int argc, char** argv)
     cout << "In Order" << endl;
     visitInOrder(root);
     cout << "" <<endl;
+    cout << "Pre Order" << endl;
+    visitPreOrder(root);
+    cout << "" <<endl;
+        cout << "Post Order" << endl;
+    visitPostOrder(root);
+    cout << "" <<endl;
+       
     return 0;
 }
